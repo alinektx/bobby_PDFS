@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-y: auto; /* Adiciona rolagem vertical */
+            max-height: 80vh; /* Limita a altura máxima do container */
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .results {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .results-column {
+            width: 48%;
+            text-align: left;
+        }
+
+        .results-column h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .results-column ul {
+            list-style-type: none;
+            padding: 0;
+            max-height: 60vh; /* Limita a altura máxima da lista */
+            overflow-y: auto; /* Adiciona rolagem vertical */
+        }
+
+        .results-column li {
+            background-color: #e9ecef;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .download-buttons {
+            margin-top: 20px;
+        }
+
+        .download-buttons a {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px 20px;
+            background-color: #BDC32E;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .download-buttons a:hover {
+            background-color: #BDC32E;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            color: #BDC32E;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #BDC32E;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Results</h1>
+        <div class="results">
+            <div class="results-column">
+                <h2>Arquivos com Código</h2>
+                <ul>
+                    {% for file in com_codigo %}
+                        <li>{{ file }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="results-column">
+                <h2>Arquivos sem Código</h2>
+                <ul>
+                    {% for file in sem_codigo %}
+                        <li>{{ file }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="download-buttons">
+            <a href="{{ url_for('download_files', folder='com_codigo') }}">Download Arquivos com Código</a>
+            <a href="{{ url_for('download_files', folder='sem_codigo') }}">Download Arquivos sem Código</a>
+        </div>
+        <a href="/">Voltar para o Upload</a>
+    </div>
+</body>
+</html>
